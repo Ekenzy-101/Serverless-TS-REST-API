@@ -1,6 +1,7 @@
 import type { AWS } from "@serverless/typescript";
 
 import register from "@functions/register";
+import login from "@functions/login";
 
 import dynamodbTables from "./src/config/dynamodb";
 
@@ -57,6 +58,7 @@ const serverlessConfiguration: AWS = {
   },
   functions: {
     register,
+    login,
   },
 };
 
