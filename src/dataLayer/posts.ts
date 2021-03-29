@@ -26,3 +26,42 @@ export const getPostByIndex = async (
 
   return result.Items ? (result.Items[0] as Post) : null;
 };
+
+export const getPost = async (id: string) => {
+  const result = await docClient
+    .get({
+      TableName,
+      Key: {
+        id,
+      },
+    })
+    .promise();
+
+  return result.Item as Post | undefined;
+};
+
+export const updatePost = async (
+  post: Omit<Post, "createdAt" | "userId" | "imageUrl">
+) => {
+  const { id, content, category, title, updatedAt } = post;
+
+  const result = await docClient
+    .update({
+      TableName,
+      Key: {
+        id,
+      },
+      UpdateExpression:
+        "SET content = :content, category = :category, title = :title, updatedAt = :updatedAt",
+      ExpressionAttributeValues: {
+        ":content": content,
+        ":category": category,
+        ":title": title,
+        ":updatedAt": updatedAt,
+      },
+      ReturnValues: "ALL_NEW",
+    })
+    .promise();
+
+  return result.Attributes as Post | undefined;
+};

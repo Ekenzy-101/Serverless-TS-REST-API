@@ -4,6 +4,7 @@ import auth from "@functions/auth";
 import createPost from "@functions/createPost";
 import login from "@functions/login";
 import register from "@functions/register";
+import updatePost from "@functions/updatePost";
 
 import dynamodbTables from "./src/config/dynamodb";
 import s3Buckets from "./src/config/s3";
@@ -89,6 +90,7 @@ const serverlessConfiguration: AWS = {
     createPost,
     login,
     register,
+    updatePost,
   },
   useDotenv: true,
 };
