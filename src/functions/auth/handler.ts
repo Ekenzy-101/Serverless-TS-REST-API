@@ -11,8 +11,6 @@ import * as jwt from "jsonwebtoken";
 const handler: APIGatewayRequestAuthorizerHandler = async (
   event: APIGatewayRequestAuthorizerEvent
 ) => {
-  console.log(event.headers?.Cookie);
-  console.log("event", event);
   const Resource = event.methodArn;
 
   if (!event.headers?.Cookie)

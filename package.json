@@ -17,6 +17,7 @@
     "bcrypt": "^5.0.1",
     "fastest-validator": "^1.10.1",
     "jsonwebtoken": "^8.5.1",
+    "serverless-dynamodb-local": "^0.2.39",
     "source-map-support": "^0.5.19",
     "uuid": "^8.3.2"
   },

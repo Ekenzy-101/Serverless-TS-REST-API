@@ -1,9 +1,12 @@
 import type { AWS } from "@serverless/typescript";
 
-import register from "@functions/register";
+import auth from "@functions/auth";
+import createPost from "@functions/createPost";
 import login from "@functions/login";
+import register from "@functions/register";
 
 import dynamodbTables from "./src/config/dynamodb";
+import s3Buckets from "./src/config/s3";
 
 const serverlessConfiguration: AWS = {
   service: "serverless-blog",
@@ -22,6 +25,24 @@ const serverlessConfiguration: AWS = {
       webpackConfig: "./webpack.config.js",
       includeModules: true,
     },
+    dynamodb: {
+      stages: ["dev"],
+      start: {
+        port: 8000,
+        inMemory: true,
+        heapInitial: "200m",
+        heapMax: "1g",
+        migrate: true,
+        seed: true,
+        convertEmptyValues: true,
+      },
+    },
+    "serverless-offline": {
+      httpPort: 3000,
+      babelOptions: {
+        presets: ["env"],
+      },
+    },
   },
   package: {
     individually: true,
@@ -30,6 +51,8 @@ const serverlessConfiguration: AWS = {
     "serverless-webpack",
     "serverless-iam-roles-per-function",
     "serverless-v2-aws-documentation",
+    "serverless-dynamodb-local",
+    "serverless-offline",
   ],
   provider: {
     name: "aws",
@@ -45,21 +68,29 @@ const serverlessConfiguration: AWS = {
       APP_ACCESS_SECRET: "kfgreiufg3u1y332",
       ACCESS_TOKEN_COOKIE_NAME: "access_token",
       AWS_NODEJS_CONNECTION_REUSE_ENABLED: "1",
-      USERS_TABLE: "${self:service}-Users-${self:provider.stage}",
-      EMAIL_INDEX: "EmailIndex",
+      SIGNED_URL_EXPIRATION: "300",
       CLIENT_ORIGIN: "http://localhost:3000",
+      EMAIL_INDEX: "EmailIndex",
+      USER_INDEX: "UserTitleIndex",
+      POST_IMAGES_BUCKET: "${self:service}-post-images-${self:provider.stage}",
+      POSTS_TABLE: "${self:service}-Posts-${self:provider.stage}",
+      USERS_TABLE: "${self:service}-Users-${self:provider.stage}",
     },
     lambdaHashingVersion: "20201221",
   },
   resources: {
     Resources: {
       ...dynamodbTables,
+      ...s3Buckets,
     },
   },
   functions: {
-    register,
+    auth,
+    createPost,
     login,
+    register,
   },
+  useDotenv: true,
 };
 
 module.exports = serverlessConfiguration;

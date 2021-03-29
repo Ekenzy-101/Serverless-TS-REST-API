@@ -1,9 +1,9 @@
-import { User } from "@utils/types/user";
+import { Post } from "@utils/types/post";
 import { docClient } from ".";
 
-const TableName = process.env.USERS_TABLE!;
+const TableName = process.env.POSTS_TABLE!;
 
-export const createUser = async (Item: User) => {
+export const createPost = async (Item: Post) => {
   await docClient
     .put({
       TableName,
@@ -14,7 +14,7 @@ export const createUser = async (Item: User) => {
   return Item;
 };
 
-export const getUserByIndex = async (
+export const getPostByIndex = async (
   params: Omit<AWS.DynamoDB.DocumentClient.QueryInput, "TableName">
 ) => {
   const result = await docClient
@@ -24,5 +24,5 @@ export const getUserByIndex = async (
     })
     .promise();
 
-  return result.Items ? (result.Items[0] as User) : null;
+  return result.Items ? (result.Items[0] as Post) : null;
 };
