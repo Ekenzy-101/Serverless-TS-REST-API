@@ -65,3 +65,14 @@ export const updatePost = async (
 
   return result.Attributes as Post | undefined;
 };
+
+export const deletePost = async (id: string) => {
+  await docClient
+    .delete({
+      TableName,
+      Key: {
+        id,
+      },
+    })
+    .promise();
+};

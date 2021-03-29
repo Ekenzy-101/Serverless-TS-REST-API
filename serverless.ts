@@ -2,6 +2,7 @@ import type { AWS } from "@serverless/typescript";
 
 import auth from "@functions/auth";
 import createPost from "@functions/createPost";
+import deletePost from "@functions/deletePost";
 import login from "@functions/login";
 import register from "@functions/register";
 import updatePost from "@functions/updatePost";
@@ -88,6 +89,7 @@ const serverlessConfiguration: AWS = {
   functions: {
     auth,
     createPost,
+    deletePost,
     login,
     register,
     updatePost,
