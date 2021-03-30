@@ -4,7 +4,10 @@ import type {
   Handler,
 } from "aws-lambda";
 
-type ValidatedAPIGatewayProxyEvent<S> = Omit<APIGatewayProxyEvent, "body"> & {
+export type ValidatedAPIGatewayProxyEvent<S> = Omit<
+  APIGatewayProxyEvent,
+  "body"
+> & {
   body: S;
 };
 

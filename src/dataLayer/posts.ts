@@ -40,6 +40,19 @@ export const getPost = async (id: string) => {
   return result.Item as Post | undefined;
 };
 
+export const getPaginatedPosts = async (
+  ExclusiveStartKey: any,
+  Limit: number
+) => {
+  return docClient
+    .scan({
+      TableName,
+      Limit,
+      ExclusiveStartKey,
+    })
+    .promise();
+};
+
 export const updatePost = async (
   post: Omit<Post, "createdAt" | "userId" | "imageUrl">
 ) => {
