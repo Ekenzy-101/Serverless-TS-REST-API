@@ -1,4 +1,4 @@
-import AWS from "@libs/aws-sdk";
+import AWS from "../libs/aws-sdk";
 
 const localOptions = {
   credentials: {

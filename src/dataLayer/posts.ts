@@ -1,4 +1,4 @@
-import { Post } from "@utils/types/post";
+import { Post } from "../utils/types/post";
 import { docClient } from ".";
 
 const TableName = process.env.POSTS_TABLE!;
