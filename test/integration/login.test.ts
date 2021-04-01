@@ -1,13 +1,13 @@
 import { main } from "../../src/functions/login/handler";
 import { deleteAllUsers, createUser } from "../../src/dataLayer/users";
-import generateAPIGatewayEvent from "../utils/eventGeneration";
+import { generateAPIGatewayProxyEvent } from "../utils/eventGeneration";
 import * as bcrypt from "bcrypt";
 
 describe("Login Function", () => {
   let name: string, email: string, password: string;
 
   const execute = () => {
-    const event = generateAPIGatewayEvent({
+    const event = generateAPIGatewayProxyEvent({
       body: {
         email,
         password,

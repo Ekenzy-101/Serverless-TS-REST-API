@@ -1,12 +1,12 @@
 import { main } from "../../src/functions/register/handler";
 import { deleteAllUsers, createUser } from "../../src/dataLayer/users";
-import generateAPIGatewayEvent from "../utils/eventGeneration";
+import { generateAPIGatewayProxyEvent } from "../utils/eventGeneration";
 
 describe("Register Function", () => {
   let name: string, email: string, password: string, confirmPassword: string;
 
   const execute = () => {
-    const event = generateAPIGatewayEvent({
+    const event = generateAPIGatewayProxyEvent({
       body: {
         name,
         email,

@@ -1,12 +1,12 @@
 import "source-map-support/register";
-
 import {
   APIGatewayRequestAuthorizerEvent,
   APIGatewayAuthorizerResult,
   APIGatewayRequestAuthorizerHandler,
 } from "aws-lambda";
-import { parseCookies } from "@libs/apiGateway";
 import * as jwt from "jsonwebtoken";
+
+import { parseCookies } from "../../libs/apiGateway";
 
 const handler: APIGatewayRequestAuthorizerHandler = async (
   event: APIGatewayRequestAuthorizerEvent
@@ -45,7 +45,9 @@ const handler: APIGatewayRequestAuthorizerHandler = async (
   }
 };
 
-export const main = handler;
+export const main = handler as (
+  event: APIGatewayRequestAuthorizerEvent
+) => Promise<APIGatewayAuthorizerResult>;
 
 function generateAuthResponse(params: {
   principalId: string;
