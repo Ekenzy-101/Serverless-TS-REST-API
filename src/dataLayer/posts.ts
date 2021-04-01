@@ -89,3 +89,23 @@ export const deletePost = async (id: string) => {
     })
     .promise();
 };
+
+export const deleteAllPosts = async () => {
+  const result = await docClient
+    .scan({
+      TableName,
+    })
+    .promise();
+
+  if (result.Items?.length) {
+    const mappedItems = result.Items.map((item) => ({
+      DeleteRequest: {
+        Key: { id: item.id },
+      },
+    }));
+
+    await docClient
+      .batchWrite({ RequestItems: { [TableName]: mappedItems } })
+      .promise();
+  }
+};

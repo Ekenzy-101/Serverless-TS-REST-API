@@ -4,14 +4,14 @@ import { v4 as uuidv4 } from "uuid";
 import {
   ValidatedEventAPIGatewayProxyEvent,
   formatJSONResponse,
-} from "@libs/apiGateway";
-import { middyfy } from "@libs/lambda";
-import { getValidationErrors } from "@libs/validation";
-import { User } from "@utils/types/user";
-import { Post } from "@utils/types/post";
-import { createPost } from "@dataLayer/posts";
+} from "../../libs/apiGateway";
+import { middyfy } from "../../libs/lambda";
+import { getValidationErrors } from "../../libs/validation";
+import { User } from "../../utils/types/user";
+import { Post } from "../../utils/types/post";
+import { createPost } from "../../dataLayer/posts";
 import { postSchema } from "./schema";
-import { getUploadUrl } from "@libs/s3";
+import { getUploadUrl } from "../../libs/s3";
 
 interface EventBody {
   title: string;
