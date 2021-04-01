@@ -5,11 +5,11 @@ import * as jwt from "jsonwebtoken";
 import {
   setCookie,
   ValidatedEventAPIGatewayProxyEvent,
-} from "@libs/apiGateway";
-import { formatJSONResponse } from "@libs/apiGateway";
-import { middyfy } from "@libs/lambda";
-import { getValidationErrors } from "@libs/validation";
-import { getUserByIndex } from "@dataLayer/users";
+  formatJSONResponse,
+} from "../../libs/apiGateway";
+import { middyfy } from "../../libs/lambda";
+import { getValidationErrors } from "../../libs/validation";
+import { getUserByIndex } from "../../dataLayer/users";
 import { loginSchema } from "./schema";
 
 interface EventBody {
