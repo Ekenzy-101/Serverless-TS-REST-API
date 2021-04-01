@@ -4,8 +4,8 @@
   "description": "Serverless aws-nodejs-typescript template",
   "main": "serverless.ts",
   "scripts": {
-    "test:unit": "jest --watch --testPathPattern=./src",
-    "test:integration": "jest --watch --testPathPattern=./test/integration"
+    "test:unit": "jest --watch --detectOpenHandles --testPathPattern=./src",
+    "test:integration": "jest --watch --detectOpenHandles --testPathPattern=./test/integration"
   },
   "engines": {
     "node": ">=14.15.0"

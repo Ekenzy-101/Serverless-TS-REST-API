@@ -3,11 +3,11 @@ import "source-map-support/register";
 import {
   ValidatedEventAPIGatewayProxyEvent,
   formatJSONResponse,
-} from "@libs/apiGateway";
-import { middyfy } from "@libs/lambda";
-import { getValidationErrors } from "@libs/validation";
-import { User } from "@utils/types/user";
-import { deletePost, getPost } from "@dataLayer/posts";
+} from "../../libs/apiGateway";
+import { middyfy } from "../../libs/lambda";
+import { getValidationErrors } from "../../libs/validation";
+import { User } from "../../utils/types/user";
+import { deletePost, getPost } from "../../dataLayer/posts";
 import { idSchema } from "./schema";
 
 const handler: ValidatedEventAPIGatewayProxyEvent<any> = async (event) => {
