@@ -1,4 +1,4 @@
-import { PostCategory } from "@utils/types/post";
+import { PostCategory } from "../../utils/types/post";
 
 const { Education, Sport, Politics } = PostCategory;
 
